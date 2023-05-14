@@ -128,11 +128,16 @@ public:
 					cout << ch;
 					data = data + ch;
 				}
-			if (et == editType::onlyAlpha)
+			if (et == editType::onlyAlpha) {
 				if (isAlpha(ch)) {
 					cout << ch;
 					data = data + ch;
 				}
+				if (isSpace(ch)) {
+					cout << ch;
+					data = data + ch;
+				}
+			}
 			if (et == editType::all) {
 				cout << ch;
 				data = data + ch;

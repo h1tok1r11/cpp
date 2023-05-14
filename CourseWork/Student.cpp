@@ -205,26 +205,24 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 		switch (subjectItem)
 		{
 		case 1:
-			for (int i = 0; i < 9;i++) {
-				for (int j = 0; j < 10; j++) {
-					if (not(studentData.sessions[i][j].isEmpty)) continue;
-					else {
-						editData->clear(studentData.sessions[i][j].nameOfSubject);
-						editData->setLabel("Введите название предмета");
-						tmpstr = editData->getData(editType::onlyAlpha, 30);
-						strncpy_s(studentData.sessions[i][j].nameOfSubject, tmpstr.c_str(), tmpstr.size());
+			for (int j = 0; j < 10; j++) {
+				if (not(studentData.sessions[numberOfSession][j].isEmpty)) continue;
+				else {
+					editData->clear(studentData.sessions[numberOfSession][j].nameOfSubject);
+					editData->setLabel("Введите название предмета");
+					tmpstr = editData->getData(editType::onlyAlpha, 30);
+					strncpy_s(studentData.sessions[numberOfSession][j].nameOfSubject, tmpstr.c_str(), tmpstr.size());
 						
-						string nameOfSubjectString(studentData.sessions[i][j].nameOfSubject);
-						//string mark = setMark("Введите оценку по предмету " + nameOfSubjectString, i, j);
-						setMark("Введите оценку по предмету " + nameOfSubjectString, i, j);
-						MenuOfEditingSubjects->editMenuItem(studentData.sessions[i][j].nameOfSubject + space + returnMarkString(studentData.sessions[i][j].markType), j + 2);
-						studentData.sessions[i][j].isEmpty = false;
-					}
-					break;
+					string nameOfSubjectString(studentData.sessions[numberOfSession][j].nameOfSubject);
+					//string mark = setMark("Введите оценку по предмету " + nameOfSubjectString, i, j);
+					setMark("Введите оценку по предмету " + nameOfSubjectString, numberOfSession, j);
+					MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][j].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][j].markType), j + 2);
+					studentData.sessions[numberOfSession][j].isEmpty = false;
 				}
 				break;
-			}
 			break;
+			}
+		break;
 		case 2:
 			if (studentData.sessions[numberOfSession][0].isEmpty) break;
 			else {
@@ -238,7 +236,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						studentData.sessions[numberOfSession][0].isEmpty = true;
 						studentData.sessions[numberOfSession][0].markType = markType::bad;
 						strcpy_s(studentData.sessions[numberOfSession][0].nameOfSubject, "");
-						MenuOfEditingSubjects->editMenuItem("Пусто", 1);
+						MenuOfEditingSubjects->editMenuItem("Пусто", 2);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;
@@ -248,7 +246,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						tmpstr = editData->getData(editType::onlyAlpha, 30);
 						strncpy_s(studentData.sessions[numberOfSession][0].nameOfSubject, tmpstr.c_str(), tmpstr.size());
 						setMark("Введите оценку по предмету " + nameOfSubjectString, numberOfSession, 0);
-						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][0].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][0].markType), 1);
+						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][0].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][0].markType), 2);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;
@@ -271,7 +269,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						studentData.sessions[numberOfSession][1].isEmpty = true;
 						studentData.sessions[numberOfSession][1].markType = markType::bad;
 						strcpy_s(studentData.sessions[numberOfSession][1].nameOfSubject, "");
-						MenuOfEditingSubjects->editMenuItem("Пусто", 2);
+						MenuOfEditingSubjects->editMenuItem("Пусто", 3);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;
@@ -281,7 +279,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						tmpstr = editData->getData(editType::onlyAlpha, 30);
 						strncpy_s(studentData.sessions[numberOfSession][1].nameOfSubject, tmpstr.c_str(), tmpstr.size());
 						setMark("Введите оценку по предмету " + nameOfSubjectString, numberOfSession, 1);
-						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][1].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][1].markType), 2);
+						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][1].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][1].markType), 3);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;
@@ -304,7 +302,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						studentData.sessions[numberOfSession][2].isEmpty = true;
 						studentData.sessions[numberOfSession][2].markType = markType::bad;
 						strcpy_s(studentData.sessions[numberOfSession][2].nameOfSubject, "");
-						MenuOfEditingSubjects->editMenuItem("Пусто", 3);
+						MenuOfEditingSubjects->editMenuItem("Пусто", 4);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;
@@ -314,7 +312,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						tmpstr = editData->getData(editType::onlyAlpha, 30);
 						strncpy_s(studentData.sessions[numberOfSession][2].nameOfSubject, tmpstr.c_str(), tmpstr.size());
 						setMark("Введите оценку по предмету " + nameOfSubjectString, numberOfSession, 2);
-						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][2].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][2].markType),3);
+						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][2].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][2].markType), 4);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;
@@ -337,7 +335,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						studentData.sessions[numberOfSession][3].isEmpty = true;
 						studentData.sessions[numberOfSession][3].markType = markType::bad;
 						strcpy_s(studentData.sessions[numberOfSession][3].nameOfSubject, "");
-						MenuOfEditingSubjects->editMenuItem("Пусто", 4);
+						MenuOfEditingSubjects->editMenuItem("Пусто", 5);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;
@@ -347,7 +345,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						tmpstr = editData->getData(editType::onlyAlpha, 30);
 						strncpy_s(studentData.sessions[numberOfSession][3].nameOfSubject, tmpstr.c_str(), tmpstr.size());
 						setMark("Введите оценку по предмету " + nameOfSubjectString, numberOfSession, 3);
-						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][3].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][3].markType), 4);
+						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][3].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][3].markType), 5);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;
@@ -370,7 +368,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						studentData.sessions[numberOfSession][4].isEmpty = true;
 						studentData.sessions[numberOfSession][4].markType = markType::bad;
 						strcpy_s(studentData.sessions[numberOfSession][0].nameOfSubject, "");
-						MenuOfEditingSubjects->editMenuItem("Пусто", 5);
+						MenuOfEditingSubjects->editMenuItem("Пусто", 6);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;
@@ -380,7 +378,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						tmpstr = editData->getData(editType::onlyAlpha, 30);
 						strncpy_s(studentData.sessions[numberOfSession][4].nameOfSubject, tmpstr.c_str(), tmpstr.size());
 						setMark("Введите оценку по предмету " + nameOfSubjectString, numberOfSession, 4);
-						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][4].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][4].markType), 5);
+						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][4].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][4].markType), 6);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;
@@ -403,7 +401,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						studentData.sessions[numberOfSession][5].isEmpty = true;
 						studentData.sessions[numberOfSession][5].markType = markType::bad;
 						strcpy_s(studentData.sessions[numberOfSession][5].nameOfSubject, "");
-						MenuOfEditingSubjects->editMenuItem("Пусто", 6);
+						MenuOfEditingSubjects->editMenuItem("Пусто", 7);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;
@@ -413,7 +411,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						tmpstr = editData->getData(editType::onlyAlpha, 30);
 						strncpy_s(studentData.sessions[numberOfSession][5].nameOfSubject, tmpstr.c_str(), tmpstr.size());
 						setMark("Введите оценку по предмету " + nameOfSubjectString, numberOfSession, 5);
-						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][5].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][5].markType), 6);
+						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][5].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][5].markType), 7);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;
@@ -436,7 +434,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						studentData.sessions[numberOfSession][6].isEmpty = true;
 						studentData.sessions[numberOfSession][6].markType = markType::bad;
 						strcpy_s(studentData.sessions[numberOfSession][6].nameOfSubject, "");
-						MenuOfEditingSubjects->editMenuItem("Пусто", 7);
+						MenuOfEditingSubjects->editMenuItem("Пусто", 8);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;
@@ -446,7 +444,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						tmpstr = editData->getData(editType::onlyAlpha, 30);
 						strncpy_s(studentData.sessions[numberOfSession][6].nameOfSubject, tmpstr.c_str(), tmpstr.size());
 						setMark("Введите оценку по предмету " + nameOfSubjectString, numberOfSession, 6);
-						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][6].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][6].markType), 7);
+						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][6].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][6].markType), 8);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;
@@ -469,7 +467,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						studentData.sessions[numberOfSession][7].isEmpty = true;
 						studentData.sessions[numberOfSession][7].markType = markType::bad;
 						strcpy_s(studentData.sessions[numberOfSession][7].nameOfSubject, "");
-						MenuOfEditingSubjects->editMenuItem("Пусто", 8);
+						MenuOfEditingSubjects->editMenuItem("Пусто", 9);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;
@@ -479,7 +477,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						tmpstr = editData->getData(editType::onlyAlpha, 30);
 						strncpy_s(studentData.sessions[numberOfSession][7].nameOfSubject, tmpstr.c_str(), tmpstr.size());
 						setMark("Введите оценку по предмету " + nameOfSubjectString, numberOfSession, 7);
-						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][7].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][7].markType), 8);
+						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][7].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][7].markType), 9);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;
@@ -502,7 +500,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						studentData.sessions[numberOfSession][8].isEmpty = true;
 						studentData.sessions[numberOfSession][8].markType = markType::bad;
 						strcpy_s(studentData.sessions[numberOfSession][8].nameOfSubject, "");
-						MenuOfEditingSubjects->editMenuItem("Пусто", 9);
+						MenuOfEditingSubjects->editMenuItem("Пусто", 10);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;
@@ -512,7 +510,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						tmpstr = editData->getData(editType::onlyAlpha, 30);
 						strncpy_s(studentData.sessions[numberOfSession][8].nameOfSubject, tmpstr.c_str(), tmpstr.size());
 						setMark("Введите оценку по предмету " + nameOfSubjectString, numberOfSession, 8);
-						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][8].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][8].markType), 9);
+						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][8].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][8].markType), 10);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;
@@ -535,7 +533,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						studentData.sessions[numberOfSession][9].isEmpty = true;
 						studentData.sessions[numberOfSession][9].markType = markType::bad;
 						strcpy_s(studentData.sessions[numberOfSession][9].nameOfSubject, "");
-						MenuOfEditingSubjects->editMenuItem("Пусто", 10);
+						MenuOfEditingSubjects->editMenuItem("Пусто", 11);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;
@@ -545,7 +543,7 @@ void Student::setSubjects(string header, int numberOfSession, int numberOfStuden
 						tmpstr = editData->getData(editType::onlyAlpha, 30);
 						strncpy_s(studentData.sessions[numberOfSession][9].nameOfSubject, tmpstr.c_str(), tmpstr.size());
 						setMark("Введите оценку по предмету " + nameOfSubjectString, numberOfSession, 9);
-						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][9].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][9].markType), 10);
+						MenuOfEditingSubjects->editMenuItem(studentData.sessions[numberOfSession][9].nameOfSubject + space + returnMarkString(studentData.sessions[numberOfSession][9].markType), 11);
 						subjectInfoItem = 0;
 						writeToFileStudentData(numberOfStudent);
 						break;

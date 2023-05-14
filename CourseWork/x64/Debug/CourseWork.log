@@ -1,1 +1,12 @@
-﻿  CourseWork.vcxproj -> D:\Курсовая\CourseWork\x64\Debug\CourseWork.exe
+﻿  DBOfStudents.cpp
+D:\Курсовая\CourseWork\CourseWork\CryptoTools.h(14,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  InputValidation.cpp
+  Menu.cpp
+  Student.cpp
+D:\Курсовая\CourseWork\CourseWork\Student.cpp(693,3): warning C4102: deafault: неиспользованная метка
+  Создание кода...
+D:\Курсовая\CourseWork\CourseWork\Student.cpp(142): warning C4715: Student::returnMarkString: значение возвращается не при всех путях выполнения
+D:\Курсовая\CourseWork\CourseWork\InputValidation.h(187): warning C4715: InputValidation::getData: значение возвращается не при всех путях выполнения
+D:\Курсовая\CourseWork\CourseWork\InputValidation.h(176): warning C4715: InputValidation::getData: значение возвращается не при всех путях выполнения
+D:\Курсовая\CourseWork\CourseWork\List.h(87): warning C4715: List<StudentNode>::operator[]: значение возвращается не при всех путях выполнения
+  CourseWork.vcxproj -> D:\Курсовая\CourseWork\x64\Debug\CourseWork.exe

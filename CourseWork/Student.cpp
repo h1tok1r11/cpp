@@ -810,7 +810,7 @@ void Student::getShortInfoFromFile() {
 	cout << "Нажмите любую клавишу" << endl;
 	_getch();
 	editData->clear();
-	editData->setLabel("Введите номер из списка, чтобы получить подробную информацию о студенте. ");
+	editData->setLabel("Введите номер из списка, чтобы получить подробную информацию о студенте и нажмите Enter");
 	int num = editData->getData(editType::onlyDigits, 0, size);
 	setStudentNodeFromFile(num - 1);
 	editStudent(num);
@@ -854,24 +854,33 @@ void Student::clearStudentNode() {
 	strcpy_s(studentData.numberOfrecordBook, "");
 }
 
-void Student::bubbleSortMarksInDescendingOrder()
+void Student::bubbleSortMarksInDescendingOrder(int numberOfSession)
 {
 	List<StudentNode> ListOfStudents;
-	int countOfItems = countNumberOfRecords();	
+	int countOfItems = countNumberOfRecords();
 	for (int i = 0; i < countOfItems; i++)
 	{
 		setStudentNodeFromFile(i);
 		ListOfStudents.push_back(studentData);
 	}
 
+	editData->clear(); editData->setLabel("Введите группу, которую хотите отсортировать по убыванию  успеваемости студентов, учащихся в этой группе");
+	string group = editData->getData(editType::all, 11);
+
+	editData->clear(); editData->setLabel("Введите номер сессии, относительно которой будет осуществляться сортировка студентов");
+	int NumberOfSession = editData->getData(editType::onlyDigits, 0, 9);
+
 	for (int i = 0; i < countOfItems; i++) {
-		for (int j = 0; j < countOfItems - 1; j++) {
-			if (ListOfStudents[j].yearOfAdmission < ListOfStudents[j + 1].yearOfAdmission) {
+		bool flag = true;
+		for (int j = 0; j < countOfItems - (i + 1); j++) {
+			if ((ListOfStudents[j].sessions[numberOfSession][j].markType < ListOfStudents[j + 1].yearOfAdmission) and (ListOfStudents[j] == group)) {
+				flag = false;
 				StudentNode tmp = ListOfStudents[j];
 				ListOfStudents[j] = ListOfStudents[j + 1];
 				ListOfStudents[j + 1] = tmp;
 			}
 		}
+		if (flag) break;
 	}
 	for (int i = 0; i < countOfItems; i++)
 	{

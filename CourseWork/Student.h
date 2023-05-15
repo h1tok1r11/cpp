@@ -68,5 +68,6 @@ public:
 	void getShortInfoFromFile();
 	void getShortInfoFromFile(int min, int max);
 	void clearStudentNode();
-	void bubbleSortMarksInDescendingOrder();
+
+	void bubbleSortMarksInDescendingOrder(int numberOfSession);
 };

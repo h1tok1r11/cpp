@@ -16,6 +16,7 @@ struct Sessions {
 
 struct StudentNode  
 {
+	//float GPA = 0;
 	char lastName[30];
 	char name[20];
 	char patronymic[30];
@@ -68,6 +69,6 @@ public:
 	void getShortInfoFromFile();
 	void getShortInfoFromFile(int min, int max);
 	void clearStudentNode();
-
-	void bubbleSortMarksInDescendingOrder(int numberOfSession);
+	float returnGPA(int numberOfSession);
+	void bubbleSortMarksInDescendingOrder();
 };

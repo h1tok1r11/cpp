@@ -694,8 +694,8 @@ void Student::editStudent(int numberOfSesssion) {
 			break;
 		}
 	}
+	//studentData.GPA = returnGPA(numberOfSesssion);
 	delete menuOfStudents;
-
 }
 
 void Student::setStudentData(int numberOfSesssion) {
@@ -854,26 +854,47 @@ void Student::clearStudentNode() {
 	strcpy_s(studentData.numberOfrecordBook, "");
 }
 
-void Student::bubbleSortMarksInDescendingOrder(int numberOfSession)
+float Student::returnGPA(int numberOfSession)
 {
-	List<StudentNode> ListOfStudents;
-	int countOfItems = countNumberOfRecords();
-	for (int i = 0; i < countOfItems; i++)
-	{
-		setStudentNodeFromFile(i);
-		ListOfStudents.push_back(studentData);
+	int sum = 0;
+	int cnt = 0;
+	for (int j = 0; j < 10; j++) {
+		if (studentData.sessions[numberOfSession][j].isEmpty) continue;
+		else {
+			sum += studentData.sessions[numberOfSession][j].markType;
+			cnt += 1;
+		}
 	}
+	return (float)sum / cnt;
+}
+
+void Student::bubbleSortMarksInDescendingOrder()
+{
 
 	editData->clear(); editData->setLabel("Введите группу, которую хотите отсортировать по убыванию  успеваемости студентов, учащихся в этой группе");
 	string group = editData->getData(editType::all, 11);
 
 	editData->clear(); editData->setLabel("Введите номер сессии, относительно которой будет осуществляться сортировка студентов");
-	int NumberOfSession = editData->getData(editType::onlyDigits, 0, 9);
+	int numberOfSession = editData->getData(editType::onlyDigits, 0, 9);
+
+	List<StudentNode> ListOfStudents;
+	int countOfItems = countNumberOfRecords();
+
+	float GPAarray[10];
+	for (int i = 0; i < countOfItems; i++)
+	{
+		setStudentNodeFromFile(i);
+		ListOfStudents.push_back(studentData);
+		if (ListOfStudents[i].group != group) ListOfStudents.pop_back();
+		else {
+			GPAarray[i] = returnGPA(numberOfSession);
+		}
+	}
 
 	for (int i = 0; i < countOfItems; i++) {
 		bool flag = true;
 		for (int j = 0; j < countOfItems - (i + 1); j++) {
-			if ((ListOfStudents[j].sessions[numberOfSession][j].markType < ListOfStudents[j + 1].yearOfAdmission) and (ListOfStudents[j] == group)) {
+			if (GPAarray[j] < GPAarray[j + 1]) {
 				flag = false;
 				StudentNode tmp = ListOfStudents[j];
 				ListOfStudents[j] = ListOfStudents[j + 1];

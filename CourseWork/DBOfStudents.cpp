@@ -78,7 +78,7 @@ int main(){
     //student.setStudentData(1);
     //student.writeToFileStudentData(2);
     //student.deleteFromFileStudentData(2);
-    //student.bubbleSortMarksInDescendingOrder();
+    student.bubbleSortMarksInDescendingOrder();
 
     //HCRYPTPROV hProv;
     //HCRYPTKEY hSessionKey;

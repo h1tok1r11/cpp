@@ -69,7 +69,7 @@ void Student::setDepartment() {
 
 void Student::setGroup() {
 	editData->clear(studentData.group); editData->setLabel("Введите группу: ");
-	tmpstr = editData->getData(editType::all, 11);
+	tmpstr = editData->getData(editType::all, 11); tmpstr.pop_back();
 	strncpy_s(studentData.group, tmpstr.c_str(), tmpstr.size());
 }
 
@@ -872,7 +872,7 @@ void Student::bubbleSortMarksInDescendingOrder()
 {
 
 	editData->clear(); editData->setLabel("Введите группу, которую хотите отсортировать по убыванию  успеваемости студентов, учащихся в этой группе");
-	string group = editData->getData(editType::all, 11);
+	string group = editData->getData(editType::all, 11); group.pop_back();
 
 	editData->clear(); editData->setLabel("Введите номер сессии, относительно которой будет осуществляться сортировка студентов");
 	int numberOfSession = editData->getData(editType::onlyDigits, 0, 9);
